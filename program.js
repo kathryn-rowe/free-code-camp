@@ -124,21 +124,66 @@ function findLongestWord(str) {
 }
 
 findLongestWord("The quick brown fox jumped over the lazy dog");
-console.log("_________________________");
+console.log("------------------------");
+
 // REPLACE FIRST LETTER WITH CAPITAL************
+
 
 function titleCase(str) {
   var newStr = str.split(" ");
-  console.log(newStr);
-  var finalStr = " ";
+
+  var finalStr = "";
+  
   for (var word in newStr) {
+    var length = (newStr[word]).length;
     var first = newStr[word][0].toUpperCase();
-    newStr[word].split(newStr[word][0]);
+    if (length > 1){
+      var last = newStr[word].slice(-(length - 1));
+      finalStr = finalStr + " " + first + last.toLowerCase();
+    } else {
+      finalStr += " " + first;
+    }
     // word[0] = first;
     // finalStr += word;
   }
-  console.log("++++++++");
-  console.log(finalStr);
+  console.log(finalStr.trim());
+
 }
 
-titleCase("I'm a little tea pot");
+titleCase("HERE IS MY HANDLE HERE IS MY SPOUT");
+
+console.log("------------------------");
+// LARGEST NUMBER IN SUB-ARRAYS**********************
+function largestOfFour(arr) {
+  
+  var largeSubs = {};
+  var highValue;
+
+  for (var i = 0; i < arr.length; i ++){
+    highValue = 0;
+    
+    for (var j = 0; j < arr[i].length; j ++){
+      if (arr[i][j] > highValue) {
+        highValue = arr[i][j];
+      }
+    }largeSubs[highValue] = arr[i];
+  }
+
+  var highKey = [];
+  highValue = 0;
+
+  for (var x in largeSubs){
+    var z = parseInt(x, 10);
+    var b = parseInt(highValue, 10);
+    if (z > b) {
+        highValue = z;
+
+        if (highKey.length > 0) {highKey.pop();}
+        
+        highKey.push(largeSubs[x]);
+    }
+  }
+  console.log(highKey);
+}
+
+largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
