@@ -179,6 +179,43 @@ function largestOfFour(arr) {
         highValue = z;
 
         if (highKey.length > 0) {highKey.pop();}
+
+        highKey.push(largeSubs[x]);
+    }
+  }
+  console.log(highKey);
+}
+
+largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+
+console.log("------------------------");
+
+// LARGEST NUMBER from each SUB-ARRAYS**********************
+function largestOfFour(arr) {
+  
+  var largeSubs = [];
+  var highValue;
+
+  for (var i = 0; i < arr.length; i ++){
+    highValue = 0;
+    
+    for (var j = 0; j < arr[i].length; j ++){
+      if (arr[i][j] > highValue) {
+        highValue = arr[i][j];
+      }
+    } largeSubs[highValue] = arr[i];
+  }
+
+  var highKey = [];
+  highValue = 0;
+
+  for (var x in largeSubs){
+    var z = parseInt(x, 10);
+    var b = parseInt(highValue, 10);
+    if (z > b) {
+        highValue = z;
+
+        if (highKey.length > 0) {highKey.pop();}
         
         highKey.push(largeSubs[x]);
     }
