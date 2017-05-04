@@ -360,7 +360,61 @@ bouncer([1, null, NaN, 2, undefined]);
 console.log("------------------------");
 
 function destroyer(arr) {
-  // Remove all the values
-  console.log(arguments[0]);
+  var badValues = Array.prototype.slice.call(arguments);
+  badValues.shift();
+  return arr.filter(function(x) {return badValues.indexOf(x) == -1;});
 }
+
 destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+
+// INSERT BY INDEX*********************************************
+console.log("------------------------");
+
+function getIndexToIns(arr, num) {
+  
+  arr.sort(function(a, b){return a-b;});
+  var arr_len = arr.length;
+
+  if (num > arr[arr.length -1]){
+    return arr.length;
+  }
+  
+  for (var i = 0; i < arr_len; i++){
+    if (num <= arr[i]){
+      arr.splice(i, 0, num);
+      console.log(i);
+    }
+  }
+}
+
+getIndexToIns([5, 3, 20, 3], 5);
+
+// CAESAR CIPHER*************************************************
+console.log("------------------------");
+
+function rot13(str) { // LBH QVQ VG!
+  var number;
+  var letter;
+  var new_str = "";
+
+  for (var i = 0; i < str.length; i++){
+    number = str.charCodeAt(i);
+    if (number > 64 && number < 91) {
+      if (number <= 77){
+        number += 13;
+        letter = String.fromCharCode(number);
+        console.log(letter);
+        new_str += letter;
+      } else {
+        number -= 13;
+        letter = String.fromCharCode(number);
+        new_str += letter;
+      }
+    } else {
+      new_str += str[i];
+    }
+  } console.log(new_str);
+}
+
+// Change the inputs below to test
+rot13("SERR PBQR PNZC!");
