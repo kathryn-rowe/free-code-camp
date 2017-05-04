@@ -293,14 +293,74 @@ function chunkArrayInGroups(arr, size) {
   var allArrays = [];
   var collectionArray = [];
 
-  while (arr.length > 0) {
-    allArrays.push(collectionArray);
-    for (var i = 0; i <= size; i ++){
-      allArrays.push(arr[i]);
-      arr.pop(arr[i]);
+  for (var i = 0; i < arr.length; i ++) {
+    collectionArray.push(arr[i]);
+    if (collectionArray.length == size){
+      allArrays.push(collectionArray);
+      collectionArray = [];
     }
-  } console.log(collectionArray);
+  } if (collectionArray.length > 0){
+    allArrays.push(collectionArray);
+  }
   console.log(allArrays);
 }
-
 chunkArrayInGroups(["a", "b", "c", "d"], 2);
+
+// SLASHER**********************************************
+console.log("------------------------");
+
+function slasher(arr, howMany) {
+  // it doesn't always pay to be first
+  
+  for (var i = 0; i < howMany; i ++){
+      arr.shift();
+  } console.log(arr);
+}
+
+slasher([1, 2, "chicken", 3, "potatoes", "cheese", 4], 5);
+
+// SLASHER WITH SPLICE.()******************************
+console.log("------------------------");
+
+function slasher2(arr2, howMany2) {
+  // it doesn't always pay to be first
+  arr2.splice(0, howMany2);
+  console.log(arr2);
+  console.log("second");
+}
+
+slasher2([1, 2, "chicken", 3, "potatoes", "cheese", 4], 2);
+
+// MUTATION****************************************
+console.log("------------------------");
+function mutation(arr) {
+  var first = arr[0].toLowerCase();
+  var second = arr[1].toLowerCase();
+
+  for (var i = 0; i < second.length; i ++){
+    if (first.indexOf(second[i]) == -1){
+      console.log(false);
+    }
+  }
+}
+
+mutation(["voodoo", "no"]);
+
+// FALSY BOUNCER*********************************************
+console.log("------------------------");
+
+function bouncer(arr) {
+  // Don't show a false ID to this bouncer.
+  console.log(arr.filter(Boolean));
+}
+
+bouncer([1, null, NaN, 2, undefined]);
+
+// DESTROYER***************************************************
+console.log("------------------------");
+
+function destroyer(arr) {
+  // Remove all the values
+  console.log(arguments[0]);
+}
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);
